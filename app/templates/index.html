@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block content %}
+{% if current_user.is_authenticated %}
+<h2 class="heading">Welcome, {{ current_user.username }}</h2>
+
+<h3 class="heading">Add New Task</h3>
+<form method="POST" action="{{ url_for('main.add_task') }}">
+    {{ form.hidden_tag() }}
+    {{ form.content(size=40) }}
+    {{ form.submit(class="button") }}
+</form>
+
+<h3 class="heading">Your Tasks</h3>
+<ul>
+    {% for task in tasks %}
+    <li class="task-item {% if task.is_done %}done{% endif %}">
+        <form method="GET" action="{{ url_for('main.update_task', task_id=task.id) }}">
+            <button type="submit" title="Toggle Task Done" aria-label="Toggle Done">
+                {% if task.is_done %}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                    <path
+                        d="M11.602 13.7599L13.014 15.1719L21.4795 6.7063L22.8938 8.12051L13.014 18.0003L6.65 11.6363L8.06421 10.2221L10.189 12.3469L11.6025 13.7594L11.602 13.7599ZM11.6037 10.9322L16.5563 5.97949L17.9666 7.38977L13.014 12.3424L11.6037 10.9322ZM8.77698 16.5873L7.36396 18.0003L1 11.6363L2.41421 10.2221L3.82723 11.6352L3.82604 11.6363L8.77698 16.5873Z">
+                    </path>
+                </svg>
+                {% else %}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                    <path
+                        d="M4 3H20C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3ZM5 5V19H19V5H5Z">
+                    </path>
+                </svg>
+                {% endif %}
+            </button>
+        </form>
+
+        <span>{{ task.content }}</span>
+
+        <form method="GET" action="{{ url_for('main.delete_task', task_id=task.id) }}">
+            <button type="submit" title="Delete Task" aria-label="Delete">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="red">
+                    <path
+                        d="M10.5859 12L2.79297 4.20706L4.20718 2.79285L12.0001 10.5857L19.793 2.79285L21.2072 4.20706L13.4143 12L21.2072 19.7928L19.793 21.2071L12.0001 13.4142L4.20718 21.2071L2.79297 19.7928L10.5859 12Z">
+                    </path>
+                </svg>
+            </button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endif %}
+{% endblock %}

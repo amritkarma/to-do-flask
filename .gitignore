@@ -1,0 +1,68 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+env/
+venv/
+
+# Flask-related files
+instance/
+*.db
+*.sqlite3
+
+# Editor-specific
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Logs and debugging
+*.log
+
+# Environment variable files
+.env
+.env.*
+
+# Coverage, testing
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+
+# Migrations
+migrations/
+
+# Compiled frontend assets (if any)
+dist/
+build/
+*.tgz
+*.zip
+
+# Python egg files
+*.egg
+*.egg-info/
+.eggs/
+
+# Gunicorn PID file
+gunicorn.pid
+
+# Jupyter notebooks
+*.ipynb_checkpoints
+
+# MyPy & Pyre
+.mypy_cache/
+.pyre/
+
+# Database dumps or backups
+*.sql
+*.dump
+
+# Cache
+.cache/

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <h2 class="heading">Register</h2>
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <label for="{{ form.username.id }}">
+            {{ form.username.label }}
+        </label>
+        {{ form.username(class="form-control") }}
+
+        <label for="{{ form.password.id }}">
+            {{ form.password.label }}
+        </label>
+        {{ form.password(class="form-control") }}
+
+        <label for="{{ form.confirm.id }}">
+            {{ form.confirm.label }}
+        </label>
+        {{ form.confirm(class="form-control") }}
+
+        {{ form.submit(class="button") }}
+    </form>
+
+    <p class="auth-route">Already have an account? <a href="{{ url_for('main.login') }}">Login</a></p>
+</div>
+{% endblock %}
