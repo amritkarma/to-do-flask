@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Edit Task</h2>
+
+<form method="POST" class="task-form">
+    {{ form.hidden_tag() }}
+    {{ form.content(placeholder="Update task...", class="form-control") }}
+    {{ form.submit(class="button") }}
+</form>
+
+<a href="{{ url_for('main.index') }}" class="link-button">← Back to list</a>
+{% endblock %}

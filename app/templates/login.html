@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <h2 class="heading">Login</h2>
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <label for="{{ form.username.id }}">
+            {{ form.username.label }}
+        </label>
+        {{ form.username(class="form-control") }}
+
+        <label for="{{ form.password.id }}">
+            {{ form.password.label }}
+        </label>
+        {{ form.password(class="form-control") }}
+
+        {{ form.submit(class="button") }}
+    </form>
+
+    <p class="auth-route">No account? <a href="{{ url_for('main.register') }}">Register</a></p>
+</div>
+{% endblock %}

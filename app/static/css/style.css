@@ -1,0 +1,382 @@
+/* ───────────────────────────────
+   Modern CSS Reset
+──────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+html:focus-within {
+  scroll-behavior: smooth;
+}
+body {
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ───────────────────────────────
+  Theme Variables (Light / Dark)
+──────────────────────────────── */
+:root {
+  --font: 'Inter', system-ui, sans-serif;
+  --bg: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --accent: #263470ab;
+  --accent-hover: #253663;
+  --border: #e5e7eb;
+  --radius: 0.5rem;
+  --error: #ef4444;
+  --success: #22c55e;
+}
+body.dark-mode {
+  --bg: #0f172a;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --border: #334155;
+}
+
+/* ───────────────────────────────
+  Base Styles
+──────────────────────────────── */
+body {
+  font-family: var(--font);
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+.container {
+  max-width: 720px;
+  margin: auto;
+  padding: 2rem 1rem;
+}
+header,
+footer {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+header .container,
+footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+h1 a {
+  text-decoration: none;
+  color: var(--text);
+}
+h3 {
+  margin: 20px 0px;
+}
+nav a {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+}
+nav a:hover {
+  color: var(--accent);
+}
+
+/* ───────────────────────────────
+  Nav + Theme + Hamburger
+──────────────────────────────── */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.toggle-theme {
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: var(--text);
+}
+.toggle-theme:hover {
+  background: transparent;
+  transform: scale(1.07);
+}
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.hamburger svg {
+  width: 24px;
+  height: 24px;
+}
+
+.hamburger:hover {
+  background: transparent;
+}
+.mobile-menu {
+  display: none;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 1rem;
+}
+.mobile-menu nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.mobile-menu.show {
+  display: block;
+}
+
+/* ───────────────────────────────
+  Forms
+──────────────────────────────── */
+.heading {
+  text-align: center;
+}
+.auth-route {
+  text-align: center;
+}
+.auth-route > a {
+  color: #94a3b8;
+}
+form {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 500px;
+}
+form.inline-form {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+}
+form.task-form {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+form.task-form input[type="text"] {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.95rem;
+}
+input[type="text"],
+input[type="password"],
+textarea {
+  padding: 0.65rem 0.75rem;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--text);
+  width: 100%;
+  box-sizing: border-box;
+}
+input:focus,
+textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+button,
+input[type="submit"] {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+button:hover,
+input[type="submit"]:hover {
+  background: var(--accent-hover);
+  transform: scale(1.03);
+}
+
+/* ───────────────────────────────
+  Task Styles And Animations
+──────────────────────────────── */
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+  margin-bottom: 0.5rem;
+  animation: fadeIn 0.3s ease-in;
+}
+.task-item form {
+  margin: 0;
+}
+.task-item span {
+  flex: 1;
+}
+.task-item.done span {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+.task-item button {
+  background: transparent;
+  border: none;
+  padding: 0.4rem;
+  cursor: pointer;
+  color: var(--accent);
+  transition: transform 0.1s ease;
+}
+.task-item button:hover {
+  transform: scale(1.1);
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+    height: 0;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* ───────────────────────────────
+  Messages
+──────────────────────────────── */
+.flash-messages {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+.flash {
+  position: relative;
+  padding: 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin-bottom: 1rem;
+  background-color: #fef3c7;
+}
+.flash.success {
+  background-color: #dcfce7;
+  color: #166534;
+}
+.flash.error {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+.flash .close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* ───────────────────────────────
+  Responsive
+──────────────────────────────── */
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+  .hamburger {
+    display: inline;
+  }
+  .mobile-menu.show {
+    display: block;
+  }
+}
+@media (max-width: 600px) {
+  header .container {
+    flex-direction: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  nav {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .task-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  form.task-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  button,
+  input[type="submit"] {
+    width: 100%;
+  }
+}
